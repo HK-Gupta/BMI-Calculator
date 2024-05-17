@@ -35,16 +35,17 @@ class _MyHomePageState extends State<MyHomePage> {
   var inController = TextEditingController();
   var result = "";
   var backGround = Colors.lightBlueAccent;
+  var appBarColor = Colors.lightBlueAccent;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Your BMI',
+          'BMI Calculator',
           style: TextStyle(fontSize: 25),
         ),
-        backgroundColor: Colors.lightBlueAccent,
+        backgroundColor: appBarColor,
 
       ),
       // May be i have to remove the const.
@@ -57,8 +58,8 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('BMI', style: TextStyle(
-                  fontSize: 34,
+                Text('Your BMI', style: TextStyle(
+                  fontSize: 25,
                   fontWeight: FontWeight.w700
                 ),),
 
@@ -123,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
                     if(bmi > 25) {
                       message = "You're OverWeight!!";
-                      backGround = Colors.redAccent;
+                      backGround = Colors.deepOrangeAccent;
                     } else if(bmi < 18) {
                       message = "You're UnderWeight!!";
                       backGround = Colors.orangeAccent;
@@ -131,6 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       message = "You're Healthy!!";
                       backGround = Colors.greenAccent;
                     }
+                    appBarColor = backGround;
 
                     setState(() {
                       result = "$message \nYour BMI: ${bmi.toStringAsFixed(2)}";
@@ -143,7 +145,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   }
 
 
-                }, child: Text('Calculate')),
+                },
+                  child: Text('Calculate'),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.all<Color>(Colors.tealAccent)
+                  ),
+                ),
 
                 SizedBox(height: 21),
 
